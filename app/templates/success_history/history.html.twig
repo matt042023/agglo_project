@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+      body {
+        background-color: white !important;
+      }
+      .container{
+        text-align: center;
+      }
+
+      .filter_section{
+        display: block;
+        margin: auto;
+        width: 30%; 
+        padding-bottom: 5%;
+        padding-top: 1%;
+      }
+
+      .grid{ 
+        display: grid;
+        justify-content: center;
+        grid-template-columns: repeat(4, 11.9em);
+        grid-gap: 2%;
+      }
+
+    </style>
+
+
+
+
+{# NAVBAR SECTION #}
+<header>
+  {{ include("navbar/navbar.html.twig") }}
+</header>
+
+{% if laststories != null %} 
+{# CAROUSEL SECTION #}
+  <div class="carousel_section">
+    {{ include("success_history/carousel.html.twig") }}
+  </div>
+{# SEARCH SECTION #}
+    <div class="container">
+      <div class="filter_section" data-bs-theme="light">
+        {% include 'success_history/_filter.html.twig' with {form: form} only %}
+      </div>
+      <div class="cards_section" >
+        <div class="grid">
+          {% for allstory in allstories %}
+            {% include 'success_history/_card.html.twig' with {allstory: allstory} only %}
+          {% endfor %}
+        </div>
+        <div class="navigation" style="padding-top: 3%">
+          {{ knp_pagination_render(allstories) }}
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+
+
+{% else %}
+  <div style="width: 100%; background-color: white; text-align: center; margin-top: 10px;">
+    <p style="font-size: 35px">Page momentanément indisponible</p>
+  </div>
+{% endif %} 
+
+{# FOOTER SECTION #}
+<div class="container" style="padding: 3em"></div>
+<footer>
+  {{ include("footer.html.twig") }}
+</footer>
+
+{% endblock %}

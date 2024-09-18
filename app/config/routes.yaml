@@ -1,0 +1,14 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+#Resources routes
+all_resources_view:
+    path: /resources
+    controller: App\Controller\ResourcesController::getAllResources
+
+single_resource_view:
+    path: /single-resource/{id}
+    controller: App\Controller\ResourcesController::getResourcesById

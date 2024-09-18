@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+{# NAVBAR SECTION #}
+    <header>
+        {{ include("navbar/navbar.html.twig") }}
+    </header>
+
+{# CAROUSEL SECTION #}
+    <div class='carousel_section'>
+        {{ include("events/_carouselevents.html.twig") }}
+    </div>
+{# SEARCH SECTION #}
+    <div class="container">
+        <div class="row" style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3), -5px -5px 10px rgba(255, 255, 255, 0.5);">
+            <div class="col-md-4" data-bs-theme="light" style="width: 25%; margin-left: 1%; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3), -5px -5px 10px rgba(255, 255, 255, 0.5);">
+                {% include 'events/_filter.html.twig' with {form: form} only %}
+            </div>
+            <div class="col-md-8" >
+                <div class="grid" style="grid-gap: 5%; grid-template-columns: repeat(4, 12.7em);">
+                    {% for allevent in allevents %}
+                        {% include 'events/_card.html.twig' with {allevent: allevent} only %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    
+{# FOOTER SECTION #}
+    {# <footer>
+        {{ include("footer/footer.html.twig") }}
+    </footer> #}
+
+{% endblock %}

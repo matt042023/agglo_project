@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <style>
+    #super_btn {
+        margin-top: 2%;
+        margin-left: 2%;
+    }
+
+    #super_btn a{
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #F3F3F3;
+    }
+
+    .history_block {
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .title h1{
+        font-size: 4rem;  
+    }
+
+    .add_auth_date {
+        text-align: right;
+    }
+
+    .add_auth_date p{
+        font-size: 0.7rem;
+    }
+
+    .photo {
+        text-align: right;
+    }
+    
+    .photo img{
+        width: 90%;
+        height: auto;
+    }
+
+    .description {
+        text-align: justify;
+    }
+
+    </style>
+{# NAVBAR SECTION #}
+    <header>
+        {{ include("navbar/navbar.html.twig") }}
+    </header>
+
+    <button id="super_btn" type="button" class="btn btn-outline-light" style="background-color: #d6a700"><a href="{{ path('app_events') }}">Back</a></button>
+
+    <div class="history_block">
+        <div class='title'>
+            <h1>{{ event.title }}</h1>
+        </div>
+        <div class="row" style="margin-top: 2%">
+            <div class="col-8">
+                <div class='description'>
+                    <p>{{ event.description | raw }}</p>
+                </div>
+                <div class='add_auth_date'>
+                    <p>{{ event.address }}</p>
+                    <p>{{ event.getDateHours() | date('d-m-Y') }}</p>
+                </div>
+                 {% if user is defined %}
+            {% if event.users.contains(user) %}
+                <p>Vous êtes déjà inscrit à cet évenement</p>
+                <button id="super_btn" type="button" class="btn btn-outline-light" style="background-color: #e52a02"><a href="{{ path('app_event_unregister', {id: event.id}) }}">Se désinscrire</a></button>
+            {% elseif event.nbParticipants >= event.maxParticipant %}
+                <button id="super_btn" type="button" class="btn btn-outline-light" style="background-color: #e52a02" disabled>Complet</button>
+            {% else %}
+                <button id="super_btn" type="button" class="btn btn-outline-light" style="background-color: #0e8a22"><a href="{{ path('app_event_register', {id: event.id}) }}">S'inscrire à l'événement</a></button>
+            {% endif %}
+        {% endif %}
+            </div>
+            <div class="col-4"> 
+                <div class='photo'>
+                    <img src="/images/events/imgEvent1.jpg" alt="event" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+{# FOOTER SECTION #}
+    <footer>
+        {{ include("footer.html.twig") }}
+    </footer>
+
+{% endblock %}

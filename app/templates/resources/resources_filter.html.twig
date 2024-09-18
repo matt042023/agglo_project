@@ -1,0 +1,9 @@
+<form action="{{ path('resource_filtered') }}" method="get">
+	<select name="type" class="form-control">
+		<option value="">Sélectionnez un type</option>
+		{% for type in types %}
+			<option value="{{ type.type }}">{{ type.type }}</option>
+		{% endfor %}
+	</select>
+	<button type="submit" class="btn btn-filter btn-primary btn-sm">Filtrer</button>
+</form>

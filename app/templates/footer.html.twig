@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %} {% block title %}Footer{% endblock %} {% block
+body %}
+<footer
+  class="navbar navbar-expand-lg bg-white fixed-bottom"
+  data-bs-theme="dark"
+  style="width: 100%;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3),
+    -5px -5px 10px rgba(255, 255, 255, 0.5);"
+>
+  <div id="footer" class="container">
+    <div class="collapse navbar-collapse" id="footer">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item" style="margin-left: 10em;">
+          <a class="nav-link active text-dark spaced-link me-3" href="{{ path('a_propos') }}">A propos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark spaced-link me-5 ps-5 pe-3" href="mentionslegales">Mentions légales</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark spaced-link me-3" href="{{ path('app_contacts') }}">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="logoagglo ml-auto">
+    <img
+      src="/agglo.jpg"
+      style="width: 10%; height: auto;"
+      alt="logo agglo montpellier"
+    />
+  </div>
+    
+</footer>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <style>
+    #super_btn {
+        margin-top: 2%;
+        margin-left: 2%;
+    }
+
+    #super_btn a{
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    .history_block {
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .title h1{
+        font-size: 4rem;  
+    }
+
+    .add_auth_date {
+        text-align: right;
+    }
+
+    .add_auth_date p{
+        font-size: 0.7rem;
+    }
+
+    .photo {
+        text-align: right;
+    }
+    
+    .photo img{
+        width: 90%;
+        height: auto;
+    }
+
+    .description {
+        text-align: justify;
+    }
+
+    </style>
+{# NAVBAR SECTION #}
+    <header>
+        {{ include("navbar/navbar.html.twig") }}
+    </header>
+
+    <button id="super_btn" type="button" class="btn btn-outline-light" style="background-color: #d6a700"><a href="{{ path('success_history') }}">Back</a></button>
+
+    <div class="history_block">
+        <div class='title'>
+            <h1>{{ prosuccess.title }}</h1>
+        </div>
+
+
+        <div class="row" style="margin-top: 2%">
+            <div class="col-8">
+                <div class='description'>
+                    <p>{{ prosuccess.history | raw }}</p>
+                </div>
+                <div class='add_auth_date'>
+                    <p>{{ prosuccess.address }}</p>
+                    <p>{{ prosuccess.author }}</p>
+                    <p>{{ prosuccess.publicationDate | date('d-m-Y') }}</p>
+                </div>
+            </div>
+            <div class="col-4"> 
+                <div class='photo'>
+                    <img src="{{ prosuccess.image }}" alt="{{ prosuccess.author}}" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+{# FOOTER SECTION #}
+    <footer>
+        {{ include("footer.html.twig") }}
+    </footer>
+
+{% endblock %}

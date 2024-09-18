@@ -1,0 +1,13 @@
+<div class="card" style="border: #d9e3f1 1px solid; box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3), -5px -5px 10px rgba(255, 255, 255, 0.5);">
+    <img src="{{ allstory.image }}" alt="{{ allstory.author }}" class="card-img-top" style="border: #d9e3f1 1px solid; height: 100%;">
+    <div class="card-body">
+        <h5 class="card-title">{{ allstory.title }}</h5>
+        {# <p>{{ allstory.history|u.truncate(70,'...', false)}}</P> #}
+        <a href="{{ path('success_history_card', {id: allstory.id}) }}">En savoir plus </a>
+
+        <div>
+
+            <em class='text-muted text-primary text-italic'> #{{ allstory.activityArea }} </em>
+        </div>
+    </div>
+</div>
